@@ -65,13 +65,11 @@
   }
 
   html[data-theme="light"] {
-    /* Light mode styles */
     background-color: #fff;
     color: #000000;
   }
   
   html[data-theme="dark"] {
-    /* Dark mode styles */
     background-color: #000000;
     color: #fff;
   }
