@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html data-theme="light">
   <head>
-    <title>Todo List</title>
+    <title>Organization App</title>
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
@@ -9,15 +9,24 @@
       <h1>Todo List</h1>
       <form id="todo-form">
         <input type="text" id="todo-input" placeholder="Add a task..." autocomplete="off">
-
         <button type="submit">Add</button>
       </form>
       <ul id="todo-list"></ul>
+
+      <h2>Notes</h2>
+      <form id="note-form">
+        <input type="text" id="note-input" placeholder="Add a note..." autocomplete="off" >
+        <button type="submit">Add</button>
+      </form>
+      <ul id="note-list"></ul>
     </div>
+
     <div class="toggle-container">
-        <label for="toggle-switch">Toggle Dark Mode</label>
-        <input type="checkbox" id="toggle-switch">
-      </div>
+      <label for="toggle-switch"> Dark Mode 🌗</label>
+      <input type="checkbox" id="toggle-switch">
+    </div>
+
     <script src="app.js"></script>
+
   </body>
 </html>

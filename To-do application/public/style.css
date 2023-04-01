@@ -2,13 +2,17 @@
     max-width: 500px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
+    margin-top: 5%;  
   }
   
   h1 {
     text-align: center;
     margin-top: 0;
+  }
+
+  h2 {
+    text-align: center;
+    margin-top: 50px;
   }
   
   form {
@@ -19,7 +23,7 @@
   input[type="text"] {
     flex: 1;
     padding: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid #ccc;
   }
   
@@ -27,7 +31,7 @@
     padding: 10px;
     border-radius: 5px;
     border: none;
-    background-color: #4CAF50;
+    background-color: #2e7d32;
     color: white;
     font-weight: bold;
     margin-left: 10px;
@@ -70,21 +74,25 @@
   }
   
   html[data-theme="dark"] {
-    background-color: #000000;
-    color: #fff;
+    background-color: #222;
+    color: #cfcfcf;
   }
+
+  html[data-theme="dark"] .container {
+    border-color: black;
+  }  
   
  /* Shared styles */
  .toggle-container {
   display: flex;
   position: absolute;
   top: 20px;
-  right: 20px;
+  margin-left: 45%;
 }
-
   
   .toggle-container label {
     margin-right: 10px;
+    
   }
   
   .toggle-container input[type="checkbox"] {
@@ -111,6 +119,60 @@
     left: 1px;
     transition: transform 0.2s ease-in-out;
   }
+
+  .notes-container {
+    margin-top: 50px;
+    border: 1px solid #3a3a3a;
+    border-radius: 15px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .notes-container h2 {
+    margin-top: 0;
+    margin-left: auto;
+  }
+
+  #note-form {
+    margin: 20px 0;
+  }
+  
+  .notes-list {
+    background-color: #292828;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 10px;
+  }
+  
+  .note {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: 1px solid #444444;
+    padding: 10px;
+  }
+  
+  .note span {
+    flex: 1;
+    margin-right: 10px;
+  }
+  
+  .note button {
+    background-color: #f44336;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
   
   .toggle-container input[type="checkbox"]:checked::before {
     transform: translateX(20px);
