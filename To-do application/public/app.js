@@ -7,6 +7,27 @@ const noteList = document.getElementById('note-list');
 const html = document.querySelector('html');
 const toggleSwitch = document.querySelector('#toggle-switch');
 
+// When the page loads, retrieve any saved to-do items, dark mode and notes from local storage
+const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
+const darkModeEnabled = JSON.parse(localStorage.getItem('darkModeEnabled')) || false;
+const savedNotes = JSON.parse(localStorage.getItem('notes')) || [];
+
+// Display the saved to-do items, dark mode and notes on the page
+savedTodos.forEach((todoText) => {
+  const todoItem = createTodoItem(todoText);
+  todoList.appendChild(todoItem);
+});
+
+if (darkModeEnabled) {
+  html.setAttribute('data-theme', 'dark');
+  toggleSwitch.checked = true;
+}
+
+savedNotes.forEach((noteText) => {
+  const noteItem = createNoteItem(noteText);
+  noteList.appendChild(noteItem);
+});
+
 form.addEventListener('submit', function(event) {
   event.preventDefault();
   const todoText = input.value.trim();
@@ -14,6 +35,10 @@ form.addEventListener('submit', function(event) {
     const todoItem = createTodoItem(todoText);
     todoList.appendChild(todoItem);
     input.value = '';
+
+    // Save the to-do item to local storage
+    savedTodos.push(todoText);
+    localStorage.setItem('todos', JSON.stringify(savedTodos));
   }
 });
 
@@ -24,14 +49,20 @@ noteForm.addEventListener('submit', function(event) {
     const noteItem = createNoteItem(noteText);
     noteList.appendChild(noteItem);
     noteInput.value = '';
+
+    // Save the note to local storage
+    savedNotes.push(noteText);
+    localStorage.setItem('notes', JSON.stringify(savedNotes));
   }
 });
 
 toggleSwitch.addEventListener('change', function() {
   if (this.checked) {
     html.setAttribute('data-theme', 'dark');
+    localStorage.setItem('darkModeEnabled', true);
   } else {
     html.setAttribute('data-theme', 'light');
+    localStorage.setItem('darkModeEnabled', false);
   }
 });
 
@@ -45,6 +76,10 @@ function createTodoItem(text) {
   li.appendChild(deleteButton);
   deleteButton.addEventListener('click', function() {
     li.remove();
+
+    // Remove the to-do item from local storage
+    savedTodos.splice(savedTodos.indexOf(text), 1);
+    localStorage.setItem('todos', JSON.stringify(savedTodos));
   });
   return li;
 }
@@ -59,6 +94,10 @@ function createNoteItem(text) {
   li.appendChild(deleteButton);
   deleteButton.addEventListener('click', function() {
     li.remove();
+
+    // Remove the note from local storage
+    savedNotes.splice(savedNotes.indexOf(text), 1);
+    localStorage.setItem('notes', JSON.stringify(savedNotes));
   });
   return li;
 }
