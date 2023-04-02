@@ -6,6 +6,17 @@ const noteInput = document.getElementById('note-input');
 const noteList = document.getElementById('note-list');
 const html = document.querySelector('html');
 const toggleSwitch = document.querySelector('#toggle-switch');
+const toggleLabel = document.querySelector('#toggle-label');
+
+toggleSwitch.addEventListener('change', function() {
+  if (this.checked) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    toggleLabel.textContent = 'Light Mode 🌕';
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    toggleLabel.textContent = 'Dark Mode 🌑';
+  }    
+});
 
 // When the page loads, retrieve any saved to-do items, dark mode and notes from local storage
 const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
