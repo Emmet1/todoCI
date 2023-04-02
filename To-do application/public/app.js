@@ -1,11 +1,28 @@
 const form = document.getElementById('todo-form');
 const input = document.getElementById('todo-input');
 const todoList = document.getElementById('todo-list');
+
 const noteForm = document.getElementById('note-form');
 const noteInput = document.getElementById('note-input');
 const noteList = document.getElementById('note-list');
+
 const html = document.querySelector('html');
+
 const toggleSwitch = document.querySelector('#toggle-switch');
+const toggleLabel = document.querySelector('#toggle-label');
+
+const deleteAllButton = document.getElementById('delete-all');
+const deleteAllNotesButton = document.getElementById('delete-all-notes');
+
+toggleSwitch.addEventListener('change', function() {
+  if (this.checked) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+    toggleLabel.textContent = 'Light Mode 🌕';
+  } else {
+    document.documentElement.setAttribute('data-theme', 'light');
+    toggleLabel.textContent = 'Dark Mode 🌑';
+  }    
+});
 
 // When the page loads, retrieve any saved to-do items, dark mode and notes from local storage
 const savedTodos = JSON.parse(localStorage.getItem('todos')) || [];
@@ -64,6 +81,25 @@ toggleSwitch.addEventListener('change', function() {
     html.setAttribute('data-theme', 'light');
     localStorage.setItem('darkModeEnabled', false);
   }
+});
+
+deleteAllButton.addEventListener('click', function() {
+  // Remove all to-do items from the list
+  while (todoList.firstChild) {
+    todoList.removeChild(todoList.firstChild);
+  }
+  // Remove all to-do items from local storage
+  localStorage.removeItem('todos');
+});
+
+deleteAllNotesButton.addEventListener('click', function() {
+  // Remove all note items from the list
+  while (noteList.firstChild) {
+    noteList.removeChild(noteList.firstChild);
+  }
+
+  // Remove all note items from local storage
+  localStorage.removeItem('notes');
 });
 
 function createTodoItem(text) {
