@@ -12,7 +12,7 @@ workflows:
 
 jobs:
   build:
-    working_directory: ~/todoCI
+    working_directory: ~/DevOpsProject/todo-app/To-do application
     docker:
       - image: circleci/node:latest
     steps:
